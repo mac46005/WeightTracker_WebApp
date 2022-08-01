@@ -47,6 +47,7 @@ class WghtTrck_DbAccessSqlite extends PDO_SqliteAccess{
     public function write($obj): bool
     {
         $sql = <<<SQL
+        
         SQL;
         return FALSE;
     }
