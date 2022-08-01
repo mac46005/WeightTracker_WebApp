@@ -4,6 +4,8 @@ declare(strict_types = 1);
 
 namespace WghtTrackApp_ClassLib\App;
 
+use WghtTrackApp_ClassLib\App\Enums\RequestMethodsEnum;
+use WghtTrackApp_ClassLib\App\Enums\RouteParamsEnum;
 use WghtTrackApp_ClassLib\Exceptions\RouteNotFoundException;
 
 class Router{
@@ -31,6 +33,20 @@ class Router{
         return $this->routes;
     }
 
+    /**
+     * Currently set as ['route','request_method',['controller_class_name','action']]
+     */
+    public function registerRoutes(array ...$routeList){
+        foreach($routeList as $routeItem){
+            if(isset($routeItem[RouteParamsEnum::REQUEST_METHOD])){
+                if($routeItem[RouteParamsEnum::REQUEST_METHOD] == RequestMethodsEnum::GET){
+                    $this->get($routeItem[RouteParamsEnum::ROUTE],[$routeItem[RouteParamsEnum::CONTROLLER],$routeItem[RouteParamsEnum::ACTION]]);
+                }else if($routeItem[RouteParamsEnum::REQUEST_METHOD] == RequestMethodsEnum::POST){
+                    $this->post($routeItem[RouteParamsEnum::ROUTE],[$routeItem[RouteParamsEnum::CONTROLLER],$routeItem[RouteParamsEnum::ACTION]]);
+                }
+            }
+        }
+    }
     public function resolve(string $requestUri, string $requestMethod){
         $route = explode('?', $requestUri)[0];
         $action = $this->routes[$requestMethod][$route] ?? null;

@@ -13,9 +13,9 @@ use WghtTrackApp_ClassLib\Exceptions\RouteNotFoundException;
 use WghtTrackApp_ClassLib\Models\WT_Config;
 
 class Application{
-    public static Router $router;
-    private static IDBAccess $db = NULL;
-    public static Container $container = new Container();
+    public Router $router;
+    private static IDBAccess $db;
+    public static Container $container;
     //private static DB $db;
 
     public function __construct(protected array $request,IDBAccess $database = NULL)
@@ -23,14 +23,19 @@ class Application{
         //static::$db= new DB($config->db ??[]);
         if($database)
         static::$db = $database;
-        
-        self::$router = new Router(self::$container);
+        self::$container = new Container();
+        $this->router = new Router(self::$container);
     }
 
     public static function db(){
         return static::$db;
     }
     
+    // ['route','request_method',['controller_class_name','action']]
+    public function configureRoutes(array ...$routeList):self{
+        $this->router->registerRoutes($routeList);
+        return $this;
+    }
 
     public function run(){
         try{
