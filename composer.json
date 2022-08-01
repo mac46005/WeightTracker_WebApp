@@ -1,0 +1,15 @@
+{
+    "name": "mac46/weight-tracker_webpage",
+    "authors": [
+        {
+            "name": "Marco Preciado",
+            "email": "mac46005@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "WghtTrackApp_ClassLib\\" : "src"
+        }
+    }
+}
