@@ -1,0 +1,7 @@
+
+
+main div.main-container{
+    width: var(--cont-sz-lg);
+    margin: auto auto;
+    height: inherit;
+}

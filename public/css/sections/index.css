@@ -1,8 +1,10 @@
+header { 
+    height: 80vh;
+}
 .header-container{
     height: 100%;
     margin-left: 1em;
     display: flex;
-    align-items: center;
     flex-wrap: wrap;
-    gap: 1em;
+    gap: 15em;
 }

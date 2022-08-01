@@ -7,14 +7,15 @@
 }
 
 :root{
-    --color-primary: #1E1A1D;
-    --color-secondary: #ffffff;
-    --color-danger: #DA2C38;
+    --color-primary: #F1FAEE;
+    --color-secondary: #1E1A1D;
+    --color-danger: #E63946;
     --color-warning: orange;
     --color-success: #28D501;
-    --color-bg1: #7F534B;
-    --color-bg2: hwb(315 18% 63% / 0.831);
-    --color-body-background: #E5F2C9;
+    --color-bg1: #A8DADC;
+    --color-bg2: #457B9D;
+    --color-bg3: #1D3557;
+    --color-body-background: #1B2845;
 
     --cont-sz-lg: 85%;
     --cont-sz-md: 90%;
@@ -34,8 +35,9 @@ nav{
     background: var(--color-bg1);
 }
 header{
-    background: var(--color-bg2);
-    color: var(--color-secondary);
+    font: 1em;
+    background: var(--color-bg3);
+    color: var(--color-primary);
     height: 6rem;
     width: inherit;
 }
@@ -52,4 +54,8 @@ h1{
     margin-bottom: 1em;
 }
 
+
+main{
+    height: 300px;
+}
 
