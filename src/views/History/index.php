@@ -9,6 +9,7 @@
 </head>
 <body>
     <div class="body-container">
+        <?php include VIEW_PATH . '/component/_nav.php';?>
         <header>
             <div class="header-container">
                 <h1>

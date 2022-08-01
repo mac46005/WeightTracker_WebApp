@@ -6,30 +6,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weight tracking Home</title>
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/sections/index.css">
 </head>
 <body>
     <div class="body-container">
-        <nav>
-            <div class="nav-container">
-                <h4>Weight Tracker</h4>
-                <ul class="nav-menu">
-                    <li><a href="/history">History</a></li>
-                    <li><a href="/addrecord">Record New</a></li>
-                </ul>
-            </div>
-        </nav>
+        <?php include VIEW_PATH . '/component/_nav.php'; ?>
 
         <header>
             <div class="header-container">
-                <h1>Weight Tracker EXTREME!!!</h1>
-                <p>
-                    Lets track that weight!<br/>
-                    Lets loose that weight!
-                </p>
-                <p>Testing this to see if page is refreshing</p>
-                <?php echo 'testing if php is being used'; ?>
+                <div>
+                    <h1>Weight Tracker EXTREME!!!</h1>
+                    <p>
+                        Lets track that weight!<br/>
+                        Lets loose that weight!
+                    </p>
+                </div>
+                <div>
+                    <h3>Your current weight is:</h4>
+                    <h1>100 pds</h1>
+                </div>
             </div>
         </header>
+        <main>
+            <div class="main-container">
+                <!-- ADD GOOGLE TABLES HERE -->
+            </div>
+        </main>
     </div>
 </body>
 </html>

@@ -23,8 +23,8 @@
 body{
     background: var(--color-body-background);
     color: var(--color-primary);
-    width: var(--cont-sz-lg);
-    margin: 0 auto;
+    
+    
 }
 
 nav{
@@ -33,8 +33,10 @@ nav{
 header{
     background: var(--color-bg2);
     color: var(--color-secondary);
+    height: 80vh;
 }
 
 .body-container{
-
+    width: var(--cont-sz-lg);
+    margin: 0 auto;
 }
