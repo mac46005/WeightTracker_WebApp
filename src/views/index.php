@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weight tracking Home</title>
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/components/_nav.css">
     <link rel="stylesheet" href="css/sections/index.css">
 </head>
 <body>
@@ -22,8 +23,12 @@
                     </p>
                 </div>
                 <div>
-                    <h3>Your current weight is:</h4>
-                    <h1>100 pds</h1>
+                    <hgroup>
+                        <h3>Your current weight is:</h4>
+                        <h1>100 pds</h1>
+                        <h3>Your goal weight is:</h3>
+                        <h1>200 pds</h1>
+                    </hgroup>
                 </div>
             </div>
         </header>
