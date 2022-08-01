@@ -9,12 +9,14 @@ class DBIniFile_Enum{
     public static const SCHEMA = 'schema';
     public static const USERNAME = 'username';
     public static const PASSWORD = 'password';
-    public static const LIST = [
+    public static const CONNECTION_PATH = 'connectionPath';
+    public static const OPTIONS = [
         0 => DBIniFile_Enum::DRIVER,
         1 => DBIniFile_Enum::HOST,
         2 => DBIniFile_Enum::PORT,
         3 => DBIniFile_Enum::SCHEMA,
         4 => DBIniFile_Enum::USERNAME,
-        5 => DBIniFile_Enum::PASSWORD
+        5 => DBIniFile_Enum::PASSWORD,
+        6 => DBIniFile_Enum::CONNECTION_PATH
     ];
 }

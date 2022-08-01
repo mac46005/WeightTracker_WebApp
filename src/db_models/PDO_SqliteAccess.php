@@ -1,13 +1,14 @@
 <?php
 declare(strict_types = 1);
 
+use WghtTrackApp_ClassLib\DB_Models\Enums\DBIniFile_Enum;
 use WghtTrackApp_ClassLib\DB_Models\Exceptions\DB_IniConfigException;
 
 class PDO_SqliteAccess{
     public function Connect(string $configFile): PDO|NULL{
         $pdoConnection = NULL;
         if($dbIniFile = parse_ini_file($configFile)){
-            if($connectionPath = $dbIniFile['connectionPath']){
+            if($connectionPath = $dbIniFile[DBIniFile_Enum::OPTIONS[6]]){
                 return new \PDO("sqlite:" . $connectionPath);
             }else{
                 throw new DB_IniConfigException();
