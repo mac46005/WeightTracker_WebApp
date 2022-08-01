@@ -15,7 +15,7 @@ use WghtTrackApp_ClassLib\Models\WT_Config;
 class Application{
     public static Router $router;
     private static IDBAccess $db = NULL;
-    private static Container $container;
+    public static Container $container = new Container();
     //private static DB $db;
 
     public function __construct(protected array $request,IDBAccess $database = NULL)
@@ -23,12 +23,8 @@ class Application{
         //static::$db= new DB($config->db ??[]);
         if($database)
         static::$db = $database;
-
-        static::$container->set(
-            HomeController::class,
-            function(Container $c){
-                
-            });
+        
+        self::$router = new Router(self::$container);
     }
 
     public static function db(){
