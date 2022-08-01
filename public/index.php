@@ -10,7 +10,8 @@ $router = new Router();
 
 $router
     ->get('/', [\WghtTrackApp_ClassLib\Controllers\HomeController::class, 'index'])
-    ->get('/history',[\WghtTrackApp_ClassLib\Controllers\HistoryController::class,'index']);
+    ->get('/data-manager',[\WghtTrackApp_ClassLib\Controllers\DataManagerController::class,'index'])
+    ->get('/data-manager/add',[\WghtTrackApp_ClassLib\Controllers\DataManagerController::class,'add']);
 
 
 

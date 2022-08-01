@@ -35,6 +35,7 @@
         <main>
             <div class="main-container">
                 <!-- ADD GOOGLE TABLES HERE -->
+                <h2>History Chart Below</h2>
             </div>
         </main>
     </div>
