@@ -3,6 +3,11 @@ declare(strict_types = 1);
 
 namespace WghtTrackApp_ClassLib\DB_Models;
 
-class WghtTrck_DbAccessSqlite{
-    
+use PDO_SqliteAccess;
+
+class WghtTrck_DbAccessSqlite extends PDO_SqliteAccess{
+    public function __construct(string $configFilePath)
+    {
+        parent::__construct($configFilePath);
+    }
 }
