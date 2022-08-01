@@ -4,19 +4,37 @@ declare(strict_types = 1);
 
 namespace WghtTrackApp_ClassLib\App;
 
+use WghtTrackApp_ClassLib\Controllers\HomeController;
+use WghtTrackApp_ClassLib\DB_Models\Interfaces\ICRUD;
+use WghtTrackApp_ClassLib\DB_Models\Interfaces\IDatabase;
+use WghtTrackApp_ClassLib\DB_Models\Interfaces\IDBAccess;
+use WghtTrackApp_ClassLib\DB_Models\WghtTrck_DbAccessSqlite;
 use WghtTrackApp_ClassLib\Exceptions\RouteNotFoundException;
+use WghtTrackApp_ClassLib\Models\WT_Config;
 
 class Application{
-
+    public static Router $router;
+    private static IDBAccess $db = NULL;
+    private static Container $container;
     //private static DB $db;
-    public function __construct(protected Router $router, protected array $request)
+
+    public function __construct(protected array $request,IDBAccess $database = NULL)
     {
-        //static::$db= new DB($config->db ??[]);    
+        //static::$db= new DB($config->db ??[]);
+        if($database)
+        static::$db = $database;
+
+        static::$container->set(
+            HomeController::class,
+            function(Container $c){
+                
+            });
     }
 
     public static function db(){
-        //return static::$db;
+        return static::$db;
     }
+    
 
     public function run(){
         try{

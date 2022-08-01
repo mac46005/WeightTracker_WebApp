@@ -4,8 +4,9 @@ declare(strict_types = 1);
 use WghtTrackApp_ClassLib\DB_Models\Enums\DBIniFile_Enum;
 use WghtTrackApp_ClassLib\DB_Models\Exceptions\DB_IniConfigException;
 use WghtTrackApp_ClassLib\DB_Models\Interfaces\ICRUD;
+use WghtTrackApp_ClassLib\DB_Models\Interfaces\IDBAccess;
 
-abstract class PDO_SqliteAccess implements ICRUD{
+abstract class PDO_SqliteAccess implements IDBAccess{
     protected PDO $db = NULL;
     public function __construct(
         private string $configFilePath = ''

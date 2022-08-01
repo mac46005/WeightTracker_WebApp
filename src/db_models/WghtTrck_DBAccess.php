@@ -47,7 +47,7 @@ class WghtTrck_DbAccessSqlite extends PDO_SqliteAccess{
     public function write($obj): bool
     {
         $sql = <<<SQL
-        
+
         SQL;
         return FALSE;
     }
@@ -56,6 +56,11 @@ class WghtTrck_DbAccessSqlite extends PDO_SqliteAccess{
         return FALSE;
     }
     public function update($object): bool
+    {
+        return FALSE;
+    }
+
+    public function query($sql): mixed|bool
     {
         return FALSE;
     }

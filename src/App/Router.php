@@ -9,17 +9,18 @@ use WghtTrackApp_ClassLib\Exceptions\RouteNotFoundException;
 class Router{
     private array $routes;
 
-    public function register(string $requestMethod, string $route, callable|array $action): self{
+    public function register(string $requestMethod, string $route, callable|array $action,array $params = []): self{
         $this->routes[$requestMethod][$route] = $action;
+        $this->routes[$requestMethod]['params'] = $params;
 
         return $this;
     }
 
-    public function get(string $route, callable|array $action): self{
-        return $this->register('get',$route,$action);
+    public function get(string $route, callable|array $action,array $params = []): self{
+        return $this->register('get',$route,$action,$params);
     }
-    public function post(string $route, callable|array $action): self{
-        return $this->register('post',$route,$action);
+    public function post(string $route, callable|array $action,array $params = []): self{
+        return $this->register('post',$route,$action,$params);
     }
 
     public function routes(): array{
