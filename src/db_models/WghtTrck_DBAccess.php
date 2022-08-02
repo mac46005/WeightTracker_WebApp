@@ -3,21 +3,14 @@ declare(strict_types = 1);
 
 namespace WghtTrackApp_ClassLib\DB_Models;
 
-<<<<<<< HEAD
 use WghtTrackApp_ClassLib\DB_Models\PDO_SqliteAccess;
 
 class WT_DBAccess_Sqlite extends PDO_SqliteAccess{
-
-=======
-use PDO_SqliteAccess;
-
-class WghtTrck_DbAccessSqlite extends PDO_SqliteAccess{
->>>>>>> parent of 8c6befc (Testing out read function)
+    
     public function __construct(string $configFilePath)
     {
         parent::__construct($configFilePath);
     }
-<<<<<<< HEAD
 
     public function readOne($id): mixed|bool
     {
@@ -69,6 +62,4 @@ class WghtTrck_DbAccessSqlite extends PDO_SqliteAccess{
     {
         return FALSE;
     }
-=======
->>>>>>> parent of 8c6befc (Testing out read function)
 }

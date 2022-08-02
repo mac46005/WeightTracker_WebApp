@@ -1,15 +1,11 @@
 <?php
 require '../vendor/autoload.php';
-
 define('VIEW_PATH', __DIR__ . '/../src/views');
 
 
 use WghtTrackApp_ClassLib\App\Application;
-use WghtTrackApp_ClassLib\App\Container;
 use WghtTrackApp_ClassLib\Controllers\DataManagerController;
 use WghtTrackApp_ClassLib\Controllers\HomeController;
-use WghtTrackApp_ClassLib\DB_Models\WghtTrck_DBAccessSqlite;
-use WghtTrackApp_ClassLib\DB_Models\WT_DBAccess_Sqlite;
 
 
 $MyApplication = new Application(
@@ -26,10 +22,7 @@ $MyApplication::$container
         HomeController::class,HomeController::class
     )
     ->set(
-        DataManagerController::class,
-        function(Container $c){
-            return new DataManagerController();
-        }
+        DataManagerController::class,DataManagerController::class
     );
 
 $MyApplication->run();
