@@ -3,14 +3,14 @@ declare(strict_types = 1);
 namespace WghtTrackApp_ClassLib\DB_Models\Enums;
 
 class DBIniFile_Enum{
-    public static const DRIVER = 'driver';
-    public static const HOST = 'host';
-    public static const PORT = 'port';
-    public static const SCHEMA = 'schema';
-    public static const USERNAME = 'username';
-    public static const PASSWORD = 'password';
-    public static const CONNECTION_PATH = 'connectionPath';
-    public static const OPTIONS = [
+    public const DRIVER = 'driver';
+    public const HOST = 'host';
+    public const PORT = 'port';
+    public const SCHEMA = 'schema';
+    public const USERNAME = 'username';
+    public const PASSWORD = 'password';
+    public const CONNECTION_PATH = 'connectionPath';
+    public const OPTIONS = [
         0 => DBIniFile_Enum::DRIVER,
         1 => DBIniFile_Enum::HOST,
         2 => DBIniFile_Enum::PORT,

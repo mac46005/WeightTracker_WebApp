@@ -9,7 +9,7 @@ use WghtTrackApp_ClassLib\DB_Models\Interfaces\ICRUD;
 use WghtTrackApp_ClassLib\DB_Models\Interfaces\IDBAccess;
 
 abstract class PDO_SqliteAccess implements IDBAccess{
-    protected \PDO $db = NULL;
+    protected ?\PDO $db = NULL;
     public function __construct(
         private string $configFilePath = ''
     )

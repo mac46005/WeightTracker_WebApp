@@ -3,16 +3,13 @@ declare(strict_types = 1);
 
 namespace WghtTrackApp_ClassLib\DB_Models;
 
-use WghtTrackApp_ClassLib\DB_Models\PDO_SqliteAccess;
-
-class WT_DBAccess_Sqlite extends PDO_SqliteAccess{
-    
+class WTSqliteAccess extends PDO_SqliteAccess{
     public function __construct(string $configFilePath)
     {
         parent::__construct($configFilePath);
     }
 
-    public function readOne($id): mixed|bool
+    public function readOne($id): mixed
     {
         $sql = <<<SQL
         SELECT id,weight
@@ -28,7 +25,7 @@ class WT_DBAccess_Sqlite extends PDO_SqliteAccess{
         
         return FALSE;
     }
-    public function readAll(): mixed|bool
+    public function readAll(): mixed
     {
         $sql = <<<SQL
         SELECT id,weight
@@ -58,7 +55,7 @@ class WT_DBAccess_Sqlite extends PDO_SqliteAccess{
         return FALSE;
     }
 
-    public function query($sql): mixed|bool
+    public function query($sql): mixed
     {
         return FALSE;
     }

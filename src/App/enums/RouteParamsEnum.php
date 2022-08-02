@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace WghtTrackApp_ClassLib\App\Enums;
+namespace WghtTrackApp_ClassLib\db\Enums;
 
 class RouteParamsEnum{
     public const ROUTE = 'route';

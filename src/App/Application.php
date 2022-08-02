@@ -18,11 +18,8 @@ class Application{
     public static Container $container;
     //private static DB $db;
 
-    public function __construct(protected array $request,IDBAccess $database = NULL)
+    public function __construct(protected array $request)
     {
-        //static::$db= new DB($config->db ??[]);
-        if($database)
-        static::$db = $database;
         self::$container = new Container();
         self::$router = new Router(self::$container);
     }
@@ -35,6 +32,11 @@ class Application{
     public function configureRoutes(array ...$routeList):self{
         $this->router->registerRoutes($routeList);
         return $this;
+    }
+
+    public function setDatabase(IDBAccess $database){
+        self::$db = $database;
+        self::$container->set(IDBAccess::class, self::$db::class);
     }
 
     public function run(){
