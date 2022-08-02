@@ -4,8 +4,10 @@ define('VIEW_PATH', __DIR__ . '/../src/views');
 define('CONFIG_PATH', __DIR__ . '/../config');
 
 use WghtTrackApp_ClassLib\App\Application;
+use WghtTrackApp_ClassLib\App\Container;
 use WghtTrackApp_ClassLib\Controllers\DataManagerController;
 use WghtTrackApp_ClassLib\Controllers\HomeController;
+use WghtTrackApp_ClassLib\DB_Models\Interfaces\IDBAccess;
 use WghtTrackApp_ClassLib\DB_Models\WTSqliteAccess;
 
 $iDatabase = new WTSqliteAccess(CONFIG_PATH . '/dbConn.ini');
@@ -16,7 +18,9 @@ $MyApplication = new Application(
 $MyApplication::$router
     ->get('/', [\WghtTrackApp_ClassLib\Controllers\HomeController::class, 'index'])
     ->get('/data-manager',[\WghtTrackApp_ClassLib\Controllers\DataManagerController::class,'index'])
-    ->get('/data-manager/add',[\WghtTrackApp_ClassLib\Controllers\DataManagerController::class,'add']);
+    ->get('/data-manager/add',[\WghtTrackApp_ClassLib\Controllers\DataManagerController::class,'add'])
+    ->get('/data-manager/update',[DataManagerController::class,'update'])
+    ->post('/data-manager/delete',[DataManagerController::class,'delete']);
 
 $MyApplication::$container
     ->set(
@@ -24,7 +28,10 @@ $MyApplication::$container
     )
     ->set(
         DataManagerController::class,DataManagerController::class
+    )->set(
+        IDBAccess::class, function(Container $c){
+            return new WTSqliteAccess(CONFIG_PATH . '/dbConn.ini');
+        }
     );
-$MyApplication->setDatabase($iDatabase);
 $MyApplication->run();
 

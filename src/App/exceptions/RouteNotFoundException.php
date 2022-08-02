@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace WghtTrackApp_ClassLib\Exceptions;
+namespace WghtTrackApp_ClassLib\App\Exceptions;
 
 class RouteNotFoundException extends \Exception{
     protected $message = 'Route Not found!';

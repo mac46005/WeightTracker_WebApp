@@ -4,13 +4,8 @@ declare(strict_types = 1);
 
 namespace WghtTrackApp_ClassLib\App;
 
-use WghtTrackApp_ClassLib\Controllers\HomeController;
-use WghtTrackApp_ClassLib\DB_Models\Interfaces\ICRUD;
-use WghtTrackApp_ClassLib\DB_Models\Interfaces\IDatabase;
 use WghtTrackApp_ClassLib\DB_Models\Interfaces\IDBAccess;
-use WghtTrackApp_ClassLib\DB_Models\WghtTrck_DbAccessSqlite;
-use WghtTrackApp_ClassLib\Exceptions\RouteNotFoundException;
-use WghtTrackApp_ClassLib\Models\WT_Config;
+use WghtTrackApp_ClassLib\App\Exceptions\RouteNotFoundException;
 
 class Application{
     public static Router $router;
@@ -42,7 +37,7 @@ class Application{
     public function run(){
         try{
             echo self::$router->resolve($this->request['uri'],strtolower($this->request['method']));
-        }catch(RouteNotFoundException $ex){
+        }catch(RouterNotFoundException $ex){
             http_response_code(404);
 
             //echo View::create_View('error/404');
