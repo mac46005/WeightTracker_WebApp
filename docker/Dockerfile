@@ -10,6 +10,9 @@ RUN curl -sS https://getcomposer.org./installer | php -- --install-dir=/usr/loca
 
 RUN docker-php-ext-install pdo pdo_mysql
 
+RUN composer require psr/container
+
+RUN composer dump-autoload
 
 
 WORKDIR /var/www
