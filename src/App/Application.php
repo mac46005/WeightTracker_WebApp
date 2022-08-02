@@ -13,7 +13,7 @@ use WghtTrackApp_ClassLib\Exceptions\RouteNotFoundException;
 use WghtTrackApp_ClassLib\Models\WT_Config;
 
 class Application{
-    public Router $router;
+    public static Router $router;
     private static IDBAccess $db;
     public static Container $container;
     //private static DB $db;
@@ -24,7 +24,7 @@ class Application{
         if($database)
         static::$db = $database;
         self::$container = new Container();
-        $this->router = new Router(self::$container);
+        self::$router = new Router(self::$container);
     }
 
     public static function db(){
@@ -39,7 +39,7 @@ class Application{
 
     public function run(){
         try{
-            echo $this->router->resolve($this->request['uri'],strtolower($this->request['method']));
+            echo self::$router->resolve($this->request['uri'],strtolower($this->request['method']));
         }catch(RouteNotFoundException $ex){
             http_response_code(404);
 
