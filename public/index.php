@@ -23,14 +23,7 @@ $MyApplication::$router
 
 $MyApplication::$container
     ->set(
-        HomeController::class,
-        function(Container $c){
-            // Simulates a factory 
-            // return new HomeController(
-            //     $c->get(SERVICE)
-            // );
-            return new HomeController();
-        }
+        HomeController::class,HomeController::class
     )
     ->set(
         DataManagerController::class,

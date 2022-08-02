@@ -16,10 +16,17 @@ class Container implements ContainerInterface{
         if($this->has($id)){
             // throw new NotFoundException('Class ' . $id . ' has no bindings.');
             $entry = $this->entries[$id];
-            return $entry($this);
+            
+
+            if(is_callable($entry)){
+                return $entry($this);
+            }
+
+            $id = $entry;
+            
         }
         
-        $this->resolve($id);
+        return $this->resolve($id);
     }
 
 
@@ -31,7 +38,7 @@ class Container implements ContainerInterface{
 
 
 
-    public function set(string $id, callable $concrete): self{
+    public function set(string $id, callable|string $concrete): self{
         $this->entries[$id] = $concrete;
 
         return $this;
@@ -45,7 +52,7 @@ class Container implements ContainerInterface{
 
     public function resolve(string $id){
         //REFLECTION API
-
+        
         // 1. Inspect the class that we are trying to get from the container
         $reflectionClass = new \ReflectionClass($id);
         if(! $reflectionClass->isInstantiable()){
@@ -55,8 +62,9 @@ class Container implements ContainerInterface{
         // 2. Inspect the contructor of the class
         $constructor = $reflectionClass->getConstructor();
         if(! $constructor){
-            return new $id;
+            return $reflectionClass->newInstance();
         }
+
 
         // 3. Inspect the cotructore parameters (dependencies)
         $parameters = $constructor->getParameters();
@@ -87,7 +95,6 @@ class Container implements ContainerInterface{
             },
             $parameters
         );
-
         return $reflectionClass->newInstanceArgs($dependencies);
     }
 }

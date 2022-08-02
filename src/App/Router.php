@@ -63,6 +63,7 @@ class Router{
         if(class_exists($class)){
             //$class = new $class();
             $class = $this->container->get($class);
+            
             if(method_exists($class, $method)){
                 return call_user_func_array([$class,$method], []);
             }
