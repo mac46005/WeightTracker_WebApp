@@ -1,7 +1,7 @@
 <?php
 require '../vendor/autoload.php';
 
-
+define('VIEW_PATH', __DIR__ . '/../src/views');
 
 
 use WghtTrackApp_ClassLib\App\Application;
@@ -9,22 +9,6 @@ use WghtTrackApp_ClassLib\App\Container;
 use WghtTrackApp_ClassLib\Controllers\HomeController;
 use WghtTrackApp_ClassLib\DB_Models\WghtTrck_DBAccessSqlite;
 use WghtTrackApp_ClassLib\DB_Models\WT_DBAccess_Sqlite;
-
-define('VIEW_PATH',__DIR__ . '/../src/views');
-define('CONFIG_PATH', __DIR__ . '/../config');
-// $router = new Router();
-// define('CONFIG_PATH',__DIR__ . '/../config');
-//$idatabase = new WghtTrck_DbAccessSqlite(CONFIG_PATH . '/dbConn.ini');
-// $router
-//     ->get('/', [\WghtTrackApp_ClassLib\Controllers\HomeController::class, 'index'])
-//     ->get('/data-manager',[\WghtTrackApp_ClassLib\Controllers\DataManagerController::class,'index'])
-//     ->get('/data-manager/add',[\WghtTrackApp_ClassLib\Controllers\DataManagerController::class,'add']);
-
-
-
-
-//$idatabase = new WT_DBAccess_Sqlite(CONFIG_PATH . '/dbConn.ini');
-
 
 $MyApplication = new Application(
     ['uri' => $_SERVER['REQUEST_URI'], 'method' => $_SERVER['REQUEST_METHOD']]

@@ -9,6 +9,9 @@ use WghtTrackApp_ClassLib\App\Exceptions\ContainerException;
 
 class Container implements ContainerInterface{
     private array $entries = [];
+
+
+
     public function get(string $id){
         if(! $this->has($id)){
             // throw new NotFoundException('Class ' . $id . ' has no bindings.');
@@ -17,17 +20,27 @@ class Container implements ContainerInterface{
         }
 
         $this->resolve($id);
-
-        
     }
+
+
+
     public function has(string $id): bool{
         return isset($this->entries[$id]);
     }
+
+
+
 
     public function set(string $id, callable $concrete): void{
         $this->entries[$id] = $concrete;
     }
 
+
+
+
+
+
+    
     public function resolve(string $id){
         //REFLECTION API
 
