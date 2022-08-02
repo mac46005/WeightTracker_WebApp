@@ -9,6 +9,7 @@ use WghtTrackApp_ClassLib\Controllers\DataManagerController;
 use WghtTrackApp_ClassLib\Controllers\HomeController;
 use WghtTrackApp_ClassLib\DB_Models\Interfaces\IDBAccess;
 use WghtTrackApp_ClassLib\DB_Models\WTSqliteAccess;
+use WghtTrackApp_ClassLib\Models\TrackItem;
 
 $iDatabase = new WTSqliteAccess(CONFIG_PATH . '/dbConn.ini');
 $MyApplication = new Application(
@@ -23,15 +24,13 @@ $MyApplication::$router
     ->post('/data-manager/delete',[DataManagerController::class,'delete']);
 
 $MyApplication::$container
+    ->set(HomeController::class,HomeController::class)
+    ->set(DataManagerController::class,DataManagerController::class)
     ->set(
-        HomeController::class,HomeController::class
-    )
-    ->set(
-        DataManagerController::class,DataManagerController::class
-    )->set(
-        IDBAccess::class, function(Container $c){
+        IDBAccess::class, 
+        function(Container $c){
             return new WTSqliteAccess(CONFIG_PATH . '/dbConn.ini');
-        }
-    );
+        })
+    ->set(TrackItem::class, TrackItem::class);
 $MyApplication->run();
 

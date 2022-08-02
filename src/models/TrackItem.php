@@ -8,10 +8,9 @@ use DateTime;
 
 class TrackItem{
 
-
     public function __construct(
-        public int $id = 0,
-        public float $weight = 0,
+        public int $id = (isset($_POST['id']))? $_POST['id'] : 0,
+        public float $weight = (isset($_POST['weight'])),
         public DateTime $dateTime = new DateTime('now')
     )
     {

@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace WghtTrackApp_ClassLib\App;
 
+use WghtTrackApp_ClassLib\App\Exceptions\ViewNotFoundException as ExceptionsViewNotFoundException;
 use WghtTrackApp_ClassLib\Exceptions\ViewNotFoundException;
 
 class View{
@@ -23,7 +24,7 @@ class View{
         $viewPath = VIEW_PATH . '/' . $this->view . '.php';
 
         if(! file_exists($viewPath)){
-            throw new ViewNotFoundException($viewPath);
+            throw new ExceptionsViewNotFoundException($viewPath);
         }
         ob_start();
         foreach($this->params as $key => $value){

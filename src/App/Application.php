@@ -37,7 +37,7 @@ class Application{
     public function run(){
         try{
             echo self::$router->resolve($this->request['uri'],strtolower($this->request['method']));
-        }catch(RouterNotFoundException $ex){
+        }catch(RouteNotFoundException $ex){
             http_response_code(404);
 
             //echo View::create_View('error/404');
