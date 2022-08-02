@@ -13,12 +13,12 @@ class Container implements ContainerInterface{
 
 
     public function get(string $id){
-        if(! $this->has($id)){
+        if($this->has($id)){
             // throw new NotFoundException('Class ' . $id . ' has no bindings.');
             $entry = $this->entries[$id];
             return $entry($this);
         }
-
+        
         $this->resolve($id);
     }
 
@@ -31,8 +31,10 @@ class Container implements ContainerInterface{
 
 
 
-    public function set(string $id, callable $concrete): void{
+    public function set(string $id, callable $concrete): self{
         $this->entries[$id] = $concrete;
+
+        return $this;
     }
 
 
@@ -40,7 +42,7 @@ class Container implements ContainerInterface{
 
 
 
-    
+
     public function resolve(string $id){
         //REFLECTION API
 
