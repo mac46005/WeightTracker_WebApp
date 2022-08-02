@@ -18,11 +18,31 @@ class DataManagerController{
         return View::create_View('/datamanagerviews/index');
     }
 
+    /**
+     * @method GET
+     */
+    public function viewItemForm(): View{
+        return View::create_View('datamanagerviews/ItemForm');
+    }
 
+    /**
+     * @method POST
+     */
+    public function addNewItem():View{
+        return View::create_View('');
+    }
 
-    public function add(): View{
-        return View::create_View('datamanagerviews/addEditView',[
-            'status' => 'Add'
-        ]);
+    /**
+     * @method POST
+     */
+    public function updateItem(): View{
+        return View::create_View('');
+    }
+
+    /**
+     * @method POST
+     */
+    public function deleteItem(): View{
+        return View::create_View('');
     }
 }

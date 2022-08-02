@@ -16,7 +16,7 @@
 
         <header>
             <div class="header-container">
-                <h1><?= $status; ?> Items</h1>
+                <h1><?= $op ?> Items</h1>
             </div>
         </header>
 

@@ -27,14 +27,22 @@ class View{
             throw new ExceptionsViewNotFoundException($viewPath);
         }
         ob_start();
+        
         foreach($this->params as $key => $value){
             $$key = $value;
         }
 
-        
-
+        echo '<pre>';
+        print_r($_SERVER);
+        echo '</pre>';
+        if(isset($_GET)){
+            foreach($_GET as $key => $value){
+                $$key = $value;
+            }
+        }
         include $viewPath;
 
+        
         return (string) ob_get_clean();
     }
 
