@@ -21,12 +21,7 @@ services:
       - ./nginx:/etc/nginx/conf.d
   db:
     container_name: wghtTrk-db
-    image: mysql:8.0
+    image: keinos/sqlite3:latest
     volumes:
-      - ../storage/mysql:/var/lib/mysql
-    restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-    ports:
-      - 3300:3306
+      - ../storage:/workspace
 

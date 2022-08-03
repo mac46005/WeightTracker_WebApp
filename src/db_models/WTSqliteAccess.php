@@ -47,7 +47,7 @@ class WTSqliteAccess extends PDO_SqliteAccess{
         SQL;
 
         $prepareStmt = $this->db->prepare($sql);
-        $result = $prepareStmt->execute();
+        var_dump($result = $prepareStmt->execute());
         
         return $result;
     }
