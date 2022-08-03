@@ -12,18 +12,22 @@
 </head>
 <body>
     <div class="body-container">
-        <?php include VIEW_PATH . '/component/_nav.php'; ?>
+        <?php
+
+use WghtTrackApp_ClassLib\DB_Models\Enums\CRUD_Enum;
+
+ include VIEW_PATH . '/component/_nav.php'; ?>
 
         <header>
             <div class="header-container">
-                <h1><?= $op ?> Items</h1>
+                <h1><?= ($operation == CRUD_Enum::CREATE)? 'New Entry' : 'Updating' ?> Item</h1>
             </div>
         </header>
 
         <main>
             <div class="main-container">
-                <form action="">
-                    <label for="weight">New weight:</label>
+                <form action="/submit-item-form?<?= CRUD_Enum::OPERATION?>=<?= $operation ?>&from=<?= $from ?>" method="POST">
+                    <label for="weight">Set weight:</label>
                     <input type="text" name="weight" id="weight">
                     <input type="submit" value="Submit">
                 </form>

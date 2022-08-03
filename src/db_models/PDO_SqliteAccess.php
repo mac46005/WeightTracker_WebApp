@@ -11,21 +11,25 @@ use WghtTrackApp_ClassLib\DB_Models\Interfaces\IDBAccess;
 abstract class PDO_SqliteAccess implements IDBAccess{
     protected ?\PDO $db = NULL;
     public function __construct(
-        private string $configFilePath = ''
+        protected string $configFilePath = ''
     )
     {
-        
+        $this->Connect();
     }
     public function Connect(){
         
         if($dbIniFile = parse_ini_file($this->configFilePath)){
             if($connectionPath = $dbIniFile[DBIniFile_Enum::OPTIONS[6]]){
-                $this->db = new \PDO("sqlite:" . $connectionPath);
+                echo $connectionPath;
+                $this->db = new \PDO("sqlite:" . CONFIG_PATH . $connectionPath);
             }else{
                 throw new DB_IniConfigException();
             }
         }else{
             throw new \PDOException("Failed to connect to sqlite file");
         }
+    }
+    public function __destruct()
+    {
     }
 }

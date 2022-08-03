@@ -55,9 +55,6 @@ class Router{
         $action = $this->routes[$requestMethod][$route] ?? null;
 
         if(! $action){
-            echo '<pre>';
-            print_r($_SERVER);
-            echo '</pre>';
             throw new RouteNotFoundException();
         }
 

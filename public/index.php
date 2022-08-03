@@ -9,6 +9,7 @@ use WghtTrackApp_ClassLib\Controllers\DataManagerController;
 use WghtTrackApp_ClassLib\Controllers\HomeController;
 use WghtTrackApp_ClassLib\DB_Models\Interfaces\IDBAccess;
 use WghtTrackApp_ClassLib\DB_Models\WTSqliteAccess;
+use WghtTrackApp_ClassLib\Models\EntryItem;
 use WghtTrackApp_ClassLib\Models\TrackItem;
 
 $iDatabase = new WTSqliteAccess(CONFIG_PATH . '/dbConn.ini');
@@ -20,6 +21,7 @@ $MyApplication::$router
     ->get('/', [\WghtTrackApp_ClassLib\Controllers\HomeController::class, 'index'])
     ->get('/data-manager',[\WghtTrackApp_ClassLib\Controllers\DataManagerController::class,'index'])
     ->get('/data-manager/view-item-form',[\WghtTrackApp_ClassLib\Controllers\DataManagerController::class,'viewItemForm'])
+    ->post('/submit-item-form',[DataManagerController::class,'submitForm'])
     ->post('/data-manager/delete',[DataManagerController::class,'delete']);
 
 $MyApplication::$container
@@ -30,6 +32,8 @@ $MyApplication::$container
         function(Container $c){
             return new WTSqliteAccess(CONFIG_PATH . '/dbConn.ini');
         })
-    ->set(TrackItem::class, TrackItem::class);
+    ->set(EntryItem::class,function(){
+        return new EntryItem();
+    });
 $MyApplication->run();
 

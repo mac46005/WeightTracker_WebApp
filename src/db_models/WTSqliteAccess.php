@@ -42,9 +42,14 @@ class WTSqliteAccess extends PDO_SqliteAccess{
     public function write($obj): bool
     {
         $sql = <<<SQL
-
+        INSERT INTO entryItems(weight)
+        VALUES ($obj->weight)
         SQL;
-        return FALSE;
+
+        $prepareStmt = $this->db->prepare($sql);
+        $result = $prepareStmt->execute();
+        
+        return $result;
     }
     public function delete($id): bool
     {

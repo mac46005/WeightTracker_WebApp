@@ -32,9 +32,6 @@ class View{
             $$key = $value;
         }
 
-        echo '<pre>';
-        print_r($_SERVER);
-        echo '</pre>';
         if(isset($_GET)){
             foreach($_GET as $key => $value){
                 $$key = $value;
