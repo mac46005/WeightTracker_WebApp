@@ -19,10 +19,12 @@ abstract class PDO_SqliteAccess implements IDBAccess{
     public function Connect(){
         
         if($dbIniFile = parse_ini_file($this->configFilePath)){
-            if($connectionPath = $dbIniFile[DBIniFile_Enum::OPTIONS[6]]){
-                echo $connectionPath;
-                $this->db = new \PDO("sqlite:" . CONFIG_PATH . $connectionPath);
+            
+            
+            if($filePath = $dbIniFile[DBIniFile_Enum::OPTIONS[6]]){
+                $this->db = new \PDO("sqlite:" . __DIR__. '/../'. $filePath);
             }else{
+                
                 throw new DB_IniConfigException();
             }
         }else{

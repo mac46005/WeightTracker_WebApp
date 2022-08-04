@@ -7,6 +7,7 @@ class WTSqliteAccess extends PDO_SqliteAccess{
     public function __construct(string $configFilePath)
     {
         parent::__construct($configFilePath);
+        $this->initialSetup();
     }
 
     public function readOne($id): mixed
@@ -47,7 +48,7 @@ class WTSqliteAccess extends PDO_SqliteAccess{
         SQL;
 
         $prepareStmt = $this->db->prepare($sql);
-        var_dump($result = $prepareStmt->execute());
+        $result = $prepareStmt->execute();
         
         return $result;
     }
@@ -63,5 +64,16 @@ class WTSqliteAccess extends PDO_SqliteAccess{
     public function query($sql): mixed
     {
         return FALSE;
+    }
+
+
+    public function initialSetup(){
+        $this->Connect();
+        $pdoStatement = $this->db->query(WT_SqlStatements::selectTableNameCount_SQLStatement('entryItems'));
+
+        $result = $pdoStatement->fetchAll()[0]['nameCount'];
+        if($result == 0){
+            $this->db->exec(WT_SqlStatements::CREATE_TABLE_EntryItems);
+        }
     }
 }
