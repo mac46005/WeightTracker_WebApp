@@ -3,6 +3,8 @@ declare(strict_types = 1);
 
 namespace WghtTrackApp_ClassLib\DB_Models;
 
+use Composer\Autoload\ComposerStaticInit54ad5b20b7470b3981e27190b13ba9a1;
+
 class WT_SqlStatements{
 
     public static function selectTableNameCount_SQLStatement(string $tableName): string{
@@ -46,5 +48,49 @@ class WT_SqlStatements{
     SQL;
 
 
-    ## EntryItem
+    ## EntryItem #######################################
+    // readOne()
+    // public static string $READONE_EntryItem = <<<SQL
+    // SELECT id,weight
+    //     FROM entryItems
+    //     WHERE id = $id
+    // SQL;
+
+
+    // readAll()
+    public const READALL_EntryItem = <<<SQL
+    SELECT id,weight,timeStamp
+    FROM entryItems
+    SQL;
+
+    // write()
+    // public static string $WRITE_EntryItem = <<<SQL
+    // INSERT INTO entryItems(weight,timeStamp)
+    // VALUES ('$obj->weight', '${date('y-m-d h:m:s a')}')
+    // SQL;
+    public static function writeSqlStmt(string $tableName,array $colNames, array $colValues):string{
+        $cols = implode(',',$colNames);
+        $valFomatted = [];
+        foreach($colValues as $value){
+            $valFomatted[] = "'$value'";
+        }
+        $vals = implode(',', $valFomatted);
+        echo $cols;
+        echo $vals;
+        $sql = <<<SQL
+        INSERT INTO $tableName ($cols)
+        VALUES ($vals)
+        SQL;
+
+        return $sql;
+    }
+
+    // delete()
+    //public static string $DELETE_EntryItem = <<<SQL
+    // DELETE entryItems
+    // WHERE id = $id;
+    // SQL;
+
+
+    #####################################################
 }

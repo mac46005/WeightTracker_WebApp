@@ -12,13 +12,8 @@ class WTSqliteAccess extends PDO_SqliteAccess{
 
     public function readOne($id): mixed
     {
-        $sql = <<<SQL
-        SELECT id,weight
-        FROM entryItems
-        WHERE id = $id
-        SQL;
         try{
-            $result = $this->db->query($sql);
+            $result = $this->db->query(WT_SqlStatements::$READONE_EntryItem);
             return $result;
         }catch(\PDOException $ex){
             throw $ex;
@@ -28,12 +23,8 @@ class WTSqliteAccess extends PDO_SqliteAccess{
     }
     public function readAll(): mixed
     {
-        $sql = <<<SQL
-        SELECT id,weight
-        FROM entryItems
-        SQL;
         try{
-            $result = $this->db->query($sql);
+            $result = $this->db->query(WT_SqlStatements::READALL_EntryItem);
             return $result;
         }catch(\PDOException $ex){
             throw $ex;
@@ -42,15 +33,13 @@ class WTSqliteAccess extends PDO_SqliteAccess{
     }
     public function write($obj): bool
     {
-        $sql = <<<SQL
-        INSERT INTO entryItems(weight)
-        VALUES ($obj->weight)
-        SQL;
-
-        $prepareStmt = $this->db->prepare($sql);
-        $result = $prepareStmt->execute();
-        
-        return $result;
+        try{
+            $prepareStmt = $this->db->prepare(WT_SqlStatements::writeSqlStmt('entryItems',['weight','timeStamp'],[$obj->weight,date('m/d/Y h:m:s a')]));
+            $result = $prepareStmt->execute();
+            return $result;
+        }catch(\PDOException $ex){
+            throw $ex;
+        }
     }
     public function delete($id): bool
     {
