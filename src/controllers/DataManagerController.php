@@ -21,19 +21,21 @@ class DataManagerController{
     }
 
     /**
+     * 
      * @method GET
      */
     public function viewItemForm(): View{
-        return View::create_View('datamanagerviews/ItemForm');
+        return View::create_View('datamanagerviews/itemForm');
     }
 
     public function submitForm(): View{
-        $from = $_GET['from'];
+        $from = $_REQUEST['from'];
         $object = $this->container->get(EntryItem::class);
-        $operation = $_GET[CRUD_Enum::OPERATION];
+        $operation = $_REQUEST[CRUD_Enum::OPERATION];
         if($operation == CRUD_Enum::CREATE){
             if($result = $this->dbAccess->write($object)){
                 if($from = 'home'){
+                    header('location: /');
                     return View::create_View('index');
                 }else{
                     return View::create_View('datamanager/index');

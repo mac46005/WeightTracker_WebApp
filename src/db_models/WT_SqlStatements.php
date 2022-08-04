@@ -69,14 +69,18 @@ class WT_SqlStatements{
     // VALUES ('$obj->weight', '${date('y-m-d h:m:s a')}')
     // SQL;
     public static function writeSqlStmt(string $tableName,array $colNames, array $colValues):string{
+
         $cols = implode(',',$colNames);
+
+        
         $valFomatted = [];
         foreach($colValues as $value){
             $valFomatted[] = "'$value'";
         }
         $vals = implode(',', $valFomatted);
-        echo $cols;
-        echo $vals;
+
+
+
         $sql = <<<SQL
         INSERT INTO $tableName ($cols)
         VALUES ($vals)

@@ -14,8 +14,8 @@ class EntryItem{
         public DateTime $timeStamp = new DateTime('now')
     )
     {
-        $this->id = (isset($_GET['id']))? $_GET['id'] : $id;
-        $this->weight = (isset($_GET['weight']))? $_GET['weight'] : $weight;
+        $this->id = (isset($_GET['id']))? $_REQUEST['id'] : $id;
+        $this->weight = (isset($_REQUEST['weight']))? (float)$_REQUEST['weight'] : $weight;
     }
 
     public function __toString()

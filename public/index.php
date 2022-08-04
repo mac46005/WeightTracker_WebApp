@@ -22,7 +22,7 @@ $MyApplication::$router
     ->get('/', [\WghtTrackApp_ClassLib\Controllers\HomeController::class, 'index'])
     ->get('/data-manager',[\WghtTrackApp_ClassLib\Controllers\DataManagerController::class,'index'])
     ->get('/data-manager/view-item-form',[\WghtTrackApp_ClassLib\Controllers\DataManagerController::class,'viewItemForm'])
-    ->post('/submit-item-form',[DataManagerController::class,'submitForm'])
+    ->post('/data-manager/submit-form',[DataManagerController::class,'submitForm'])
     ->post('/data-manager/delete',[DataManagerController::class,'delete']);
 
 $MyApplication::$container
