@@ -5,6 +5,7 @@ namespace WghtTrackApp_ClassLib\DB_Models;
 
 use JetBrains\PhpStorm\Internal\ReturnTypeContract;
 use PDOStatement;
+use WghtTrackApp_ClassLib\App\Container;
 use WghtTrackApp_ClassLib\Models\EntryItem;
 
 class WTSqliteAccess extends PDO_SqliteAccess{
@@ -18,11 +19,8 @@ class WTSqliteAccess extends PDO_SqliteAccess{
     {
         try{
             $pdoStatement = $this->db->query(WT_SqlStatements::select_WHERE_Id('entryItems',['weight','timeStamp'],'id',$id));
-            $result = $pdoStatement->fetchAll()[0];
-            $entryItem = $this->container->get(EntryItem::class);
-            $entryItem->weight = $result['weight'];
-            $entryItem->timeStamp = $result['timeStamp'];
-            return $result;
+            $entryItem = $pdoStatement->fetchAll(\PDO::FETCH_CLASS,EntryItem::class)[0];
+            return $entryItem;
         }catch(\PDOException $ex){
             throw $ex;
         }
@@ -32,7 +30,7 @@ class WTSqliteAccess extends PDO_SqliteAccess{
     public function readAll(): mixed
     {
         try{
-            $result = $this->db->query(WT_SqlStatements::READALL_EntryItem);
+            $result = $this->db->query(WT_SqlStatements::READALL_EntryItem,\PDO::FETCH_CLASS);
             return $result;
         }catch(\PDOException $ex){
             throw $ex;
