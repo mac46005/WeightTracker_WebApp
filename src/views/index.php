@@ -33,7 +33,32 @@
         var options = {
           title: 'Weight Time Line',
           curveType: 'function',
+          width: 1200,
+          colors:['#FFFFFF'],
+          lineWidth: 4,
           legend: { position: 'bottom' },
+          chartArea: {
+            backgroundColor: 
+            {
+                fill: '#FF0000',
+                fillOpacity: 0.1
+            }
+            
+          },
+          backgroundColor: {
+            fill: '#FF0000',
+            fillOpacity: 0
+          },
+          forgroundColor:{
+            fill: '#FFFFFF'
+          },
+          hAxis: {
+            textStyle:{color: '#FFF'}
+          },
+          vAxis:{
+            textStyle:{color: '#FFF'}
+          }
+
         };
 
         var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
@@ -45,11 +70,6 @@
 <body>
     <div class="body-container">
         <?php include VIEW_PATH . '/component/_nav.php'; ?>
-        <?php
-        echo '<pre>';
-        print_r($entryList[0]['weight']);
-        echo '</pre>';
-        ?>
         <header>
             <div class="header-container">
                 <div>
@@ -70,6 +90,8 @@
                 </div>
             </div>
         </header>
+
+
         <main>
             <div class="main-container">
                 <!-- ADD GOOGLE TABLES HERE -->

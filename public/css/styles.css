@@ -66,3 +66,7 @@ main{
 .shadowText{
     color: #979797
 }
+
+#curve_chart{
+    fill: var(--color-primary) !important;
+}

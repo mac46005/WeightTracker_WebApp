@@ -9,3 +9,10 @@ header div.header-container{
     flex-wrap: wrap;
     justify-content: space-between;
 }
+main{
+    width: 100%;
+}
+.main-container{
+    width: var(--cont-sz-lg);
+    margin: auto auto;
+}
