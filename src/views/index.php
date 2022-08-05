@@ -7,12 +7,49 @@
     <title>Weight tracking Home</title>
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/components/_nav.css">
-    <link rel="stylesheet" href="css/sections/index.css">
+    <link rel="stylesheet" href="css/sections/index.css"
+
+
+
+
+
+
+    <!-- GOOGLE CHARTS -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+            ['Time Stamp','Weight'],
+            <?php
+            foreach($entryList as $entry){
+                echo "['${entry['timeStamp']}',${entry['weight']}],";
+            }
+            ?>
+        ]);
+
+        var options = {
+          title: 'Weight Time Line',
+          curveType: 'function',
+          legend: { position: 'bottom' },
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+        chart.draw(data, options);
+      }
+    </script>
 </head>
 <body>
     <div class="body-container">
         <?php include VIEW_PATH . '/component/_nav.php'; ?>
-
+        <?php
+        echo '<pre>';
+        print_r($entryList[0]['weight']);
+        echo '</pre>';
+        ?>
         <header>
             <div class="header-container">
                 <div>
@@ -37,6 +74,7 @@
             <div class="main-container">
                 <!-- ADD GOOGLE TABLES HERE -->
                 <h2>History Chart Below</h2>
+                <div id="curve_chart" style="width: 900px;height: 500px"></div>
             </div>
         </main>
     </div>

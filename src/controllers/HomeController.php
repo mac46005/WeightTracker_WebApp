@@ -21,7 +21,10 @@ class HomeController{
         XXX
         SQL;
         $pdoStatement = $this->dbAccess->query(WT_SqlStatements::$SELECT_RecentRecord);
+
+        $entryList = $this->dbAccess->readAll();
+
         [$weight,$timeStamp] = $pdoStatement->fetchAll()[0];
-        return View::create_View('index',['weight'=> $weight,'timeStamp' => $timeStamp]);
+        return View::create_View('index',['weight'=> $weight,'timeStamp' => $timeStamp,'entryList' => $entryList]);
     }
 }

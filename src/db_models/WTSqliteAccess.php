@@ -30,8 +30,9 @@ class WTSqliteAccess extends PDO_SqliteAccess{
     public function readAll(): mixed
     {
         try{
-            $result = $this->db->query(WT_SqlStatements::READALL_EntryItem,\PDO::FETCH_CLASS);
-            return $result;
+            $pdoStmt = $this->db->query(WT_SqlStatements::READALL_EntryItem);
+            $list = $pdoStmt->fetchAll();
+            return $list;
         }catch(\PDOException $ex){
             throw $ex;
         }
