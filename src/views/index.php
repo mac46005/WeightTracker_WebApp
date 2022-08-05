@@ -25,6 +25,7 @@
                 <div>
                     <hgroup>
                         <h3>Your current weight is:</h4>
+                        <h6 class="shadowText">as of DATE</h6>
                         <h1>100 pds</h1>
                         <h3>Your goal weight is:</h3>
                         <h1>200 pds</h1>

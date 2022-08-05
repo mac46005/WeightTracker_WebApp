@@ -60,5 +60,9 @@ main{
 }
 
 .hide{
-    display: none;
+    display: non;
+}
+
+.shadowText{
+    color: #979797
 }

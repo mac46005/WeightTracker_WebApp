@@ -48,13 +48,25 @@ class WT_SqlStatements{
     SQL;
 
 
-    ## EntryItem #######################################
+    ## EntryItem DBAccess Class #######################################
     // readOne()
     // public static string $READONE_EntryItem = <<<SQL
-    // SELECT id,weight
+    // SELECT id,weight as item
     //     FROM entryItems
     //     WHERE id = $id
     // SQL;
+
+    public static function select_WHERE_Id(string $tableName, array $colNames,string $idName, mixed $id){
+        $str_colNames = implode(',',$colNames);
+        $sql = <<<SQL
+        SELECT $str_colNames
+        FROM $tableName
+        WHERE $idName = $id
+        SQL;
+
+        return $sql;
+    }
+
 
 
     // readAll()
@@ -97,4 +109,11 @@ class WT_SqlStatements{
 
 
     #####################################################
+    ## Home Index VIew ##################################
+    public static string $SELECT_RecentRecord= <<<SQL
+    SELECT weight,timeStamp
+    FROM entryItems
+    ORDER BY id DESC
+    LIMIT 1
+    SQL;
 }

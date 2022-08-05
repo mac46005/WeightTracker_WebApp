@@ -31,7 +31,7 @@ $MyApplication::$container
     ->set(
         IDBAccess::class, 
         function(Container $c){
-            return new WTSqliteAccess(CONFIG_PATH . '/dbConn.ini');
+            return new WTSqliteAccess($c->get(Container::class),CONFIG_PATH . '/dbConn.ini');
         })
     ->set(EntryItem::class,function(){
         return new EntryItem();

@@ -28,8 +28,8 @@ use WghtTrackApp_ClassLib\DB_Models\Enums\CRUD_Enum;
             <div class="main-container">
                 <form action="/data-manager/submit-form" method="POST">
 
-                    <input class="hide" type="text" name="<?= CRUD_Enum::OPERATION ?>" id="<?= CRUD_Enum::OPERATION ?>" value="<?= $operation ?>">
-                    <input class="hide" type="text" name="from" id="from" value="<?= $from ?>">
+                    <input class="hide" type="text" name="<?= CRUD_Enum::OPERATION ?>" id="<?= CRUD_Enum::OPERATION ?>" value="<?= $operation ?>" hidden>
+                    <input class="hide" type="text" name="from" id="from" value="<?= $from ?>" hidden>
                     <label for="weight">Set weight:</label>
                     <input type="number" step="any"  name="weight" id="weight">
                     <input type="submit" value="Submit">

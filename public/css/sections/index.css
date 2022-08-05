@@ -1,10 +1,11 @@
 header { 
     height: 80vh;
 }
-.header-container{
+header div.header-container{
+    width: 80%;
     height: 100%;
-    margin-left: 1em;
+    margin: auto auto;
     display: flex;
     flex-wrap: wrap;
-    gap: 15em;
+    justify-content: space-between;
 }

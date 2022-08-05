@@ -3,8 +3,12 @@ declare(strict_types = 1);
 
 namespace WghtTrackApp_ClassLib\DB_Models;
 
+use JetBrains\PhpStorm\Internal\ReturnTypeContract;
+use PDOStatement;
+use WghtTrackApp_ClassLib\Models\EntryItem;
+
 class WTSqliteAccess extends PDO_SqliteAccess{
-    public function __construct(string $configFilePath)
+    public function __construct(private Container $container,string $configFilePath)
     {
         parent::__construct($configFilePath);
         $this->initialSetup();
@@ -13,7 +17,11 @@ class WTSqliteAccess extends PDO_SqliteAccess{
     public function readOne($id): mixed
     {
         try{
-            $result = $this->db->query(WT_SqlStatements::$READONE_EntryItem);
+            $pdoStatement = $this->db->query(WT_SqlStatements::select_WHERE_Id('entryItems',['weight','timeStamp'],'id',$id));
+            $result = $pdoStatement->fetchAll()[0];
+            $entryItem = $this->container->get(EntryItem::class);
+            $entryItem->weight = $result['weight'];
+            $entryItem->timeStamp = $result['timeStamp'];
             return $result;
         }catch(\PDOException $ex){
             throw $ex;
@@ -52,7 +60,13 @@ class WTSqliteAccess extends PDO_SqliteAccess{
 
     public function query($sql): mixed
     {
-        return FALSE;
+        $pdoStatement = "";
+        try {
+            $pdoStatement = $this->db->query($sql);
+            return $pdoStatement;
+        } catch (\PDOException $th) {
+            throw $th;
+        }
     }
 
 
