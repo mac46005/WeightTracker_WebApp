@@ -9,6 +9,7 @@ use WghtTrackApp_ClassLib\App\Application;
 use WghtTrackApp_ClassLib\App\Container;
 use WghtTrackApp_ClassLib\Controllers\DataManagerController;
 use WghtTrackApp_ClassLib\Controllers\HomeController;
+use WghtTrackApp_ClassLib\Controllers\SettingsController;
 use WghtTrackApp_ClassLib\DB_Models\Interfaces\IDBAccess;
 use WghtTrackApp_ClassLib\DB_Models\WTSqliteAccess;
 use WghtTrackApp_ClassLib\Models\EntryItem;
@@ -23,7 +24,8 @@ $MyApplication::$router
     ->get('/data-manager',[\WghtTrackApp_ClassLib\Controllers\DataManagerController::class,'index'])
     ->get('/data-manager/view-item-form',[\WghtTrackApp_ClassLib\Controllers\DataManagerController::class,'viewItemForm'])
     ->post('/data-manager/submit-form',[DataManagerController::class,'submitForm'])
-    ->post('/data-manager/delete',[DataManagerController::class,'delete']);
+    ->post('/data-manager/delete',[DataManagerController::class,'delete'])
+    ->get('/user-settings',[SettingsController::class,'userSettings']);
 
 $MyApplication::$container
     ->set(HomeController::class,HomeController::class)
@@ -35,6 +37,7 @@ $MyApplication::$container
         })
     ->set(EntryItem::class,function(){
         return new EntryItem();
-    });
+    })
+    ->set(SettingsController::class,SettingsController::class);
 $MyApplication->run();
 

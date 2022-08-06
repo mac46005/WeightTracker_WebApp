@@ -34,7 +34,7 @@
           title: 'Weight Time Line',
           curveType: 'function',
           width: 1200,
-          colors:['#FFFFFF'],
+          colors:['#4da6ff'],
           lineWidth: 4,
           legend: { position: 'bottom' },
           chartArea: {
